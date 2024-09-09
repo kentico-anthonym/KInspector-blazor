@@ -1,12 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <RootNamespace>KInspector.Blazor</RootNamespace>
 	<TargetFramework>net8.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>enable</Nullable>
+	   <!--Gets around the SYSLIB1102 json configuration binder error-->
+	  <LangVersion>preview</LangVersion>
+	  
+	  <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	  <DefaultItemExcludes>wwwroot/**;node_modules/**;**/*.json</DefaultItemExcludes>
   </PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="wwwroot\**" />
+		<EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="appsettings.json" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
 	<PackageReference Include="Markdig" Version="0.37.0" />
+	  <!-- Required for generating the files manifest and embedding the resources properly-->
+	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.7" />
   </ItemGroup>
 	
   <ItemGroup>
@@ -15,3 +33,5 @@
     <ProjectReference Include="..\KInspector.Reports\KInspector.Reports.csproj" />
   </ItemGroup>
 </Project>
+
+
