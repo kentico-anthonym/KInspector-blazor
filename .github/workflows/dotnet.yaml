@@ -34,7 +34,7 @@ jobs:
     - name: Publish Blazor app
       run: |
         cd ./src/KInspector.Blazor
-        dotnet publish KInspector.Blazor.csproj /p:PublishDir=..\..\publish -c Release -r win-x64 --self-contained true
+        dotnet publish KInspector.Blazor.csproj -p:PublishDir="..\..\publish" -c Release -r win-x64 -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true -p:DebugType=None --self-contained true
     - name: Upload build artifact
       uses: actions/upload-artifact@v4
       with:

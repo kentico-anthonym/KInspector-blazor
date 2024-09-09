@@ -147,3 +147,4 @@ segments_2i
 
 # FNM/NVM node version file
 .node-version
+/publish
